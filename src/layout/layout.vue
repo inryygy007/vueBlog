@@ -86,20 +86,7 @@ import { RouterView, RouterLink } from "vue-router";
           </a-carousel>
 
           <!-- 文本列表 -->
-          <div class="box">
-            <h1><router-link to="">文章标题</router-link></h1>
-            <a-span>
-              <span>作者：张三</span>
-              <span>分类：Vue3</span>
-              <span>发布日期：2002年11月8日</span>
-            </a-span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
-              eveniet numquam est dolores, debitis maiores, rem aspernatur consectetur
-              quis dolor, obcaecati voluptatum culpa itaque tempora nobis nesciunt nisi.
-              Numquam, dolorem.
-            </p>
-          </div>
+          <RouterView></RouterView>
         </a-col>
 
         <a-col :span="6"></a-col>
@@ -109,11 +96,13 @@ import { RouterView, RouterLink } from "vue-router";
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/components/navbar.sass";
 @import "bulma/sass/elements/container.sass";
 @import "bulma/sass/elements/box.sass";
+</style>
+<style scoped lang="scss">
 .ant-carousel :deep(.slick-slide) {
   text-align: center;
   height: 160px;
