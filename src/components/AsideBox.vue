@@ -2,7 +2,12 @@
   <aside class="box is-size-5 has-text-weight-semibold">
     <h1 class="side-title">{{ name }}</h1>
     <div class="" v-if="type == 'search'">
-      <a-input-search v-model:value="value" placeholder="input search text" />
+      <a-input-search
+        placeholder="input search text"
+        @search="$emit('someSearch', value)"
+        @change="$emit('update:searchValue', $event.target.value)"
+      />
+      {{ `子组件:${searchValue}` }}
     </div>
 
     <div class="news" v-if="type == 'news' && newsData.length > 0">
@@ -32,7 +37,7 @@
 
 <script setup>
 import { ref } from "vue";
-
+defineEmits(["update:searchValue", "someSearch"]);
 const props = defineProps({
   name: {
     type: String,
@@ -57,6 +62,7 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  searchValue: "",
 });
 
 const value = ref("");

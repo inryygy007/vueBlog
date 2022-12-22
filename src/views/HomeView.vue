@@ -37,6 +37,8 @@ const obj = reactive({
     },
   ],
 });
+const searchValue1 = ref("");
+const searchValue2 = ref("");
 
 const newsData = [
   {
@@ -70,6 +72,13 @@ const archiveData = [
   { data: "2021年3月26日" },
   { data: "2022年12月8日" },
 ];
+
+const search1CallBack = () => {
+  console.log("search1CallBack", searchValue1.value);
+};
+const search2CallBack = () => {
+  console.log("search2CallBack", searchValue2.value);
+};
 </script>
 
 <template>
@@ -98,7 +107,21 @@ const archiveData = [
     </a-col>
 
     <a-col :span="6">
-      <aside-box type="search"> </aside-box>
+      <aside-box
+        type="search"
+        @some-search="search1CallBack"
+        v-model:searchValue="searchValue1"
+      >
+      </aside-box>
+      {{ `父组件：${searchValue1}` }}
+      <aside-box
+        type="search"
+        @some-search="search2CallBack"
+        v-model:searchValue="searchValue2"
+      >
+      </aside-box>
+      {{ `父组件：${searchValue2}` }}
+
       <aside-box name="最新文章" type="news" :news-data="newsDataComp"> </aside-box>
       <aside-box name="标签" type="tag" :tags-data="tagsData"> </aside-box>
       <aside-box name="归档" type="archive" :archive-data="archiveData"> </aside-box>
