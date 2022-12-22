@@ -72,6 +72,7 @@ import { RouterView, RouterLink } from "vue-router";
 
 <style lang="scss">
 @import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/minireset.sass";
 @import "bulma/sass/components/navbar.sass";
 @import "bulma/sass/elements/container.sass";
 @import "bulma/sass/elements/box.sass";
