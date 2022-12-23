@@ -12,7 +12,7 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
-  console.log(command);
+  console.log(command, env.VITE_APP_API_BASEURL);
   return {
     plugins: [
       vue(),
@@ -35,10 +35,10 @@ export default defineConfig(({ command, mode }) => {
       port: env.VITE_APP_PORT,
       // 代理
       proxy: {
-        api: {
-          target: env.VITE_APP_BASEURL,
+        "/api": {
+          target: env.VITE_APP_API_BASEURL,
           changeOrigin: true,
-          rewrite: (path) => path.repeat(/^\/api/, ""),
+          rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
     },

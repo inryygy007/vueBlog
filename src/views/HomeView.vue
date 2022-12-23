@@ -79,8 +79,8 @@ const search2CallBack = () => {
   console.log("search2CallBack", searchValue2.value);
 };
 
-console.log(import.meta.env.VITE_APP_TITLE);
-console.log(import.meta.env);
+// console.log(import.meta.env.VITE_APP_TITLE);
+// console.log(import.meta.env);
 </script>
 
 <template>

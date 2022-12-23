@@ -28,8 +28,6 @@
           <a class="navbar-item"> Home </a>
 
           <div v-for="item in data.categoryData">
-            {{ item }}
-
             <a class="navbar-item" :key="item.id" v-if="item.children.length == 0">
               {{ item.name }}
             </a>
@@ -40,12 +38,10 @@
             >
               <a class="navbar-link"> {{ item.name }} </a>
 
-              <div
-                class="navbar-dropdown"
-                v-for="subitem in item.children"
-                :key="subitem.id"
-              >
-                <a class="navbar-item"> {{ subitem.name }} </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" v-for="subitem in item.children" :key="subitem.id">
+                  {{ subitem.name }}
+                </a>
                 <!-- <a class="navbar-item"> Jobs </a>
                 <a class="navbar-item"> Contact </a>
                 <hr class="navbar-divider" />
@@ -70,21 +66,18 @@
 
 <script setup>
 import { reactive } from "vue";
-import axios from "axios";
+import categoryData from "../api/navBarApi";
 const data = reactive({
   categoryData: [],
 });
-axios
-  .get("/categorys/")
+
+categoryData()
   .then((res) => {
-    console.log(res.data);
     if (res.status == 200) {
       data.categoryData = res.data;
     }
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((error) => {});
 </script>
 
 <style lang="scss" scoped></style>
