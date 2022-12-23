@@ -1,7 +1,7 @@
 <template>
   <a-typography class="box">
     <a-typography-title :level="3">
-      <RouterLink :to="{ path: '/' }">{{ title }}</RouterLink>
+      <RouterLink :to="link">{{ title }}</RouterLink>
     </a-typography-title>
     <a-space>
       <a-space>
@@ -40,7 +40,10 @@ const props = defineProps({
     type: String,
     default: "Introduction",
   },
-  link: String || Object,
+  link: {
+    type: String,
+    default: "/",
+  },
   author: {
     type: String,
     default: "张三",
