@@ -27,7 +27,7 @@
         <div class="navbar-start">
           <a class="navbar-item"> Home </a>
 
-          <div v-for="item in data.categoryData">
+          <div v-for="item in categoryData">
             <a class="navbar-item" :key="item.id" v-if="item.children.length == 0">
               {{ item.name }}
             </a>
@@ -66,18 +66,18 @@
 
 <script setup>
 import { reactive } from "vue";
-import categoryData from "../api/navBarApi";
-const data = reactive({
-  categoryData: [],
-});
+// import categoryRequest from "../api/navBarApi";
+import { useCategoryStore } from "../stores/";
 
-categoryData()
-  .then((res) => {
-    if (res.status == 200) {
-      data.categoryData = res.data;
-    }
-  })
-  .catch((error) => {});
+const store = useCategoryStore();
+// const data = reactive({
+//   categoryData: [],
+// });
+const categoryData = store.comCategoryDatas;
+if (!categoryData.length) {
+  store.apiCategory();
+}
+console.log(categoryData);
 </script>
 
 <style lang="scss" scoped></style>
