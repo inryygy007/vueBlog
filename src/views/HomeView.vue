@@ -65,7 +65,6 @@ const search2CallBack = () => {
   <a-row :gutter="[16, 16]">
     <a-col :span="18">
       <!-- banner -->
-      <banner></banner>
 
       <!-- 文本列表 -->
       <article-item

@@ -15,6 +15,11 @@ const router = createRouter({
           name: "home",
           component: HomeView,
         },
+        {
+          path: "/category/:id",
+          name: "category",
+          component: ()=> import('../views/CategoryView.vue'),
+        },
       ],
     },
     {

@@ -8,6 +8,8 @@ import NavBar from "./NavBar.vue";
       <NavBar />
     </header>
     <div class="container">
+      <div><banner></banner></div>
+
       <RouterView></RouterView>
     </div>
     <footer class="">底部</footer>

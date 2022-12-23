@@ -1,6 +1,6 @@
 import { get } from "../utils";
-const getHomeArticle = () => {
-  let data = get("article");
+const getHomeArticle = async() => {
+  let data = await get("article");
   return data;
 };
 

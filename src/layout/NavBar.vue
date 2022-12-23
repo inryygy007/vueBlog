@@ -25,27 +25,38 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"> Home </a>
+          <RouterLink :to="{ name: 'home' }" class="navbar-item"> Home </RouterLink>
 
           <div v-for="item in categoryData">
-            <a class="navbar-item" :key="item.id" v-if="item.children.length == 0">
+            <RouterLink
+              :to="{ name: 'category', params: { id: item.id } }"
+              class="navbar-item"
+              :key="item.id"
+              v-if="item.children.length == 0"
+            >
               {{ item.name }}
-            </a>
+            </RouterLink>
 
             <div
               class="navbar-item has-dropdown is-hoverable"
               v-if="item.children.length > 0"
             >
-              <a class="navbar-link"> {{ item.name }} </a>
+              <RouterLink
+                :to="{ name: 'category', params: { id: item.id } }"
+                class="navbar-link"
+              >
+                {{ item.name }}
+              </RouterLink>
 
               <div class="navbar-dropdown">
-                <a class="navbar-item" v-for="subitem in item.children" :key="subitem.id">
+                <RouterLink
+                  :to="{ name: 'category', params: { id: subitem.id } }"
+                  class="navbar-item"
+                  v-for="subitem in item.children"
+                  :key="subitem.id"
+                >
                   {{ subitem.name }}
-                </a>
-                <!-- <a class="navbar-item"> Jobs </a>
-                <a class="navbar-item"> Contact </a>
-                <hr class="navbar-divider" />
-                <a class="navbar-item"> Report an issue </a> -->
+                </RouterLink>
               </div>
             </div>
           </div>
@@ -66,7 +77,7 @@
 
 <script setup>
 import { reactive } from "vue";
-// import categoryRequest from "../api/navBarApi";
+import { RouterLink } from "vue-router";
 import { useCategoryStore } from "../stores/";
 
 const store = useCategoryStore();
