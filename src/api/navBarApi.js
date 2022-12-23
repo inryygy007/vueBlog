@@ -1,8 +1,8 @@
 import { get } from "../utils/";
 
-const categoryRequest = () => {
-  let data = get("/categorys/");
+const getCategory = async () => {
+  let data = await get("/categorys/");
   return data;
 };
 
-export default categoryRequest;
+export default getCategory;

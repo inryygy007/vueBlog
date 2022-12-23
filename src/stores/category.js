@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import categoryRequest from "../api/navBarApi";
+import getCategory from "../api/navBarApi";
 export const useCategoryStore = defineStore("category", () => {
   //state状态
   const categoryData = ref([]);
@@ -11,7 +11,7 @@ export const useCategoryStore = defineStore("category", () => {
   });
 
   async function apiCategory() {
-    let res = await categoryRequest();
+    let res = await getCategory();
     if (res.status === 200) {
       categoryData.value = res.data;
       sessionStorage.setItem("CategoryData", JSON.stringify(res.data));

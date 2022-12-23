@@ -1,42 +1,20 @@
 <script setup>
-import AsideBox from "../components/AsideBox.vue";
 import { ref, reactive, getCurrentInstance, computed } from "vue";
+import AsideBox from "../components/AsideBox.vue";
+import getHomeArticle from "../api/homeApi";
 const { proxy } = getCurrentInstance();
 
 const obj = reactive({
-  data: [
-    {
-      title: "html",
-      link: "/",
-      author: "李四",
-      category: "html",
-      pubdate: "2022年18月",
-      desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur unde ipsam,
-      quos, harum voluptatum numquam necessitatibus, modi a officiis sed corporis
-      explicabo corrupti. Repellat quibusdam molestias temporibus doloribus magnam modi?`,
-    },
-    {
-      title: "css",
-      link: "/",
-      author: "王五",
-      category: "css",
-      pubdate: "2022年16月",
-      desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur unde ipsam,
-      quos, harum voluptatum numquam necessitatibus, modi a officiis sed corporis
-      explicabo corrupti. Repellat quibusdam molestias temporibus doloribus magnam modi?`,
-    },
-    {
-      title: "javascript",
-      link: "/",
-      author: "赵六",
-      category: "javascript",
-      pubdate: "2022年14月",
-      desc: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur unde ipsam,
-      quos, harum voluptatum numquam necessitatibus, modi a officiis sed corporis
-      explicabo corrupti. Repellat quibusdam molestias temporibus doloribus magnam modi?`,
-    },
-  ],
+  data: [],
 });
+const apiCallAFunction = async () => {
+  let res = await getHomeArticle();
+  if (res.status == 200) {
+    obj.data = res.data;
+  }
+  console.log(obj.data);
+};
+apiCallAFunction();
 const searchValue1 = ref("");
 const searchValue2 = ref("");
 
@@ -91,10 +69,11 @@ const search2CallBack = () => {
 
       <!-- 文本列表 -->
       <article-item
-        v-for="(item, index) in obj.data"
+        v-for="item in obj.data"
         :title="item.title"
         :link="item.link"
         :desc="item.desc"
+        :key="item.id"
       >
         <template #author>
           {{ item.author }}
@@ -103,7 +82,7 @@ const search2CallBack = () => {
           {{ item.category }}
         </template>
         <template #pubdate>
-          {{ item.pubdate }}
+          {{ item.pub_date }}
         </template>
       </article-item>
     </a-col>
