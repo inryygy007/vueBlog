@@ -60,7 +60,6 @@ const newsDataComp = computed(() => {
     }
     return item;
   });
-  console.log("itemNewsData", itemNewsData, newsData);
   return itemNewsData;
 });
 const tagsData = [
@@ -79,6 +78,9 @@ const search1CallBack = () => {
 const search2CallBack = () => {
   console.log("search2CallBack", searchValue2.value);
 };
+
+console.log(import.meta.env.VITE_APP_TITLE);
+console.log(import.meta.env);
 </script>
 
 <template>
