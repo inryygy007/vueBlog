@@ -38,8 +38,8 @@ instance.interceptors.response.use(
   }
 );
 const post = () => {};
-const get = (url) => {
-  let data = instance.get(url);
+const get = (url, params) => {
+  let data = instance.get(url, { params });
   return data;
 };
 export { post, get };

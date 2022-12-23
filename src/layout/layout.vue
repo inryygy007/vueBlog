@@ -1,12 +1,11 @@
 <script setup>
-import { reactive,ref, computed } from "vue";
-import { RouterView, RouterLink } from "vue-router";
+import { reactive, ref, computed } from "vue";
+import { RouterView, RouterLink, useRouter } from "vue-router";
 import NavBar from "./NavBar.vue";
 import AsideBox from "../components/AsideBox.vue";
 
 const searchValue1 = ref("");
-const searchValue2 = ref("");
-
+const router = useRouter();
 const newsData = [
   {
     title:
@@ -40,10 +39,13 @@ const archiveData = [
 ];
 
 const search1CallBack = () => {
-  console.log("search1CallBack", searchValue1.value);
-};
-const search2CallBack = () => {
-  console.log("search2CallBack", searchValue2.value);
+  // console.log("search1CallBack", searchValue1.value);
+  router.push({
+    name: "search",
+    query: {
+      search: searchValue1.value,
+    },
+  });
 };
 </script>
 <template>
@@ -67,14 +69,6 @@ const search2CallBack = () => {
             v-model:searchValue="searchValue1"
           >
           </aside-box>
-          {{ `父组件：${searchValue1}` }}
-          <aside-box
-            type="search"
-            @some-search="search2CallBack"
-            v-model:searchValue="searchValue2"
-          >
-          </aside-box>
-          {{ `父组件：${searchValue2}` }}
 
           <aside-box name="最新文章" type="news" :news-data="newsDataComp"> </aside-box>
           <aside-box name="标签" type="tag" :tags-data="tagsData"> </aside-box>
